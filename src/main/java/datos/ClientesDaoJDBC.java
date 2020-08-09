@@ -18,8 +18,8 @@ import java.util.logging.Logger;
 public class ClientesDaoJDBC {
 
     private static final String SQL_SELECT = "SELECT id, firstName, lastName, email, phone, saldo "
-            + "FROM clientes "
-            + "WHERE 1";
+            + " FROM clientes "
+            + " WHERE 1 ";
 
     private static final String SQL_SELECT_BY_ID = SQL_SELECT + " AND id = ?";
 
@@ -41,6 +41,7 @@ public class ClientesDaoJDBC {
         try {
 
             conn = Conexion.getConnection();
+
             stmt = conn.prepareStatement(SQL_SELECT);
             rs = stmt.executeQuery();
 
