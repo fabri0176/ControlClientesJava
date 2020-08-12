@@ -3,39 +3,42 @@
     Created on : 9 ago. 2020, 18:39:44
     Author     : fabricio
 --%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <script src="https://kit.fontawesome.com/37686cd5ae.js" crossorigin="anonymous"></script>
         <title>Control Clientes</title>
     </head>
     <body>
-        <h1>Control de Clientes</h1>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombres</th>
-                    <th>Apellidos</th>
-                    <th>Email</th>
-                    <th>Teléfono</th>
-                    <th>Saldo</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach var="cliente" items="${clientes}">
-                    <tr>
-                        <td>${cliente.id}</td>
-                        <td>${cliente.firstName}</td>
-                        <td>${cliente.lastName}</td>
-                        <td>${cliente.email}</td>
-                        <td>${cliente.phone}</td>
-                        <td>${cliente.saldo}</td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
+        <!-- Cabecero --->
+        <jsp:include page="WEB-INF/pages/comunes/cabecero.jsp"/>
+        <!-- /Cabecero --->
+
+        <!-- Botones Navgeaciones --->
+        <jsp:include page="WEB-INF/pages/comunes/botonesNavegacion.jsp"/>
+        <!-- /Botones Navgeaciones --->
+
+        <!-- Listado Clientes --->
+        <jsp:include page="WEB-INF/pages/cliente/listadoClientes.jsp"/>
+        <!-- /Listado Clientes --->
+
+        <!-- Optional JavaScript -->
+
+
+
+        <!-- Footer --->
+        <jsp:include page="WEB-INF/pages/comunes/footer.jsp"/>
+        <!-- /Footer --->
+
+
+
     </body>
 </html>
