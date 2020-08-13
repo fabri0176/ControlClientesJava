@@ -18,6 +18,23 @@ public class ServletControlador extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String action = req.getParameter("action");
+        if (action == null) {
+            //Carga vista
+            this.actionDefault(req, resp);
+            return;
+        }
+
+        switch (action) {
+            case "editar": {
+                this.editarCliente(req, resp);
+                break;
+            }
+            default: {
+                this.actionDefault(req, resp);
+            }
+        }
+
         this.actionDefault(req, resp);
     }
 
@@ -82,13 +99,11 @@ public class ServletControlador extends HttpServlet {
     private void actionDefault(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Clientes> clientes = new ClientesDaoJDBC().listar();
 
-
         //Carga vista
         //req.setAttribute("clientes", clientes);
         //req.setAttribute("totalClientes", clientes.size());
         //req.setAttribute("saldoTotal", this.calcularSaldoTotal(clientes));
         //req.getRequestDispatcher("clientes.jsp").forward(req, resp);
-
         //Alcance mayor
         HttpSession sesion = req.getSession();
         sesion.setAttribute("clientes", clientes);
@@ -96,5 +111,20 @@ public class ServletControlador extends HttpServlet {
         sesion.setAttribute("saldoTotal", this.calcularSaldoTotal(clientes));
 
         resp.sendRedirect("clientes.jsp");
+    }
+
+    private void editarCliente(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int id = Integer.parseInt(req.getParameter("id"));;
+
+        //Buscar cliente
+        Clientes cliente = new ClientesDaoJDBC().retrieve(new Clientes(id));
+        if (cliente == null) {
+            return;
+        }
+
+        req.setAttribute("cliente", cliente);
+        String jspEdit = "WEB-INF/pages/cliente/editarCliente.jsp";
+        req.getRequestDispatcher(jspEdit).forward(req, resp);
+
     }
 }
