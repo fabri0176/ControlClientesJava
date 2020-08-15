@@ -53,6 +53,10 @@ public class ServletControlador extends HttpServlet {
                 this.insertarCliente(req, resp);
                 break;
             }
+            case "modificar": {
+                this.modificarCliente(req, resp);
+                break;
+            }
             default: {
                 this.actionDefault(req, resp);
             }
@@ -125,6 +129,31 @@ public class ServletControlador extends HttpServlet {
         req.setAttribute("cliente", cliente);
         String jspEdit = "WEB-INF/pages/cliente/editarCliente.jsp";
         req.getRequestDispatcher(jspEdit).forward(req, resp);
+
+    }
+
+    public void modificarCliente(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        // Captura de datos
+        int id = Integer.parseInt(req.getParameter("id"));
+        String firstName = req.getParameter("firstName");
+        String lastName = req.getParameter("lastName");
+        String email = req.getParameter("email");
+        String phone = req.getParameter("phone");
+
+        //Saldo
+        double saldo = 0;
+        String saldoString = req.getParameter("saldo");
+        if (saldoString != null && !"".equals(saldoString)) {
+            saldo = Double.parseDouble(saldoString);
+        }
+
+        //Crear cliente
+        Clientes cliente = new Clientes(id, firstName, lastName, email, phone, saldo);
+
+        //Guardar
+        int registrosActualizados = new ClientesDaoJDBC().actualizar(cliente);
+        System.out.println("registrosActualizados = " + registrosActualizados);
 
     }
 }

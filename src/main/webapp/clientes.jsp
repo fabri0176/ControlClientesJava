@@ -19,15 +19,15 @@
     <body>
 
         <!-- Cabecero --->
-        <jsp:include page="WEB-INF/pages/comunes/cabecero.jsp"/>
+        <jsp:include page="/WEB-INF/pages/comunes/cabecero.jsp"/>
         <!-- /Cabecero --->
 
         <!-- Botones Navgeaciones --->
-        <jsp:include page="WEB-INF/pages/comunes/botonesNavegacion.jsp"/>
+        <jsp:include page="/WEB-INF/pages/comunes/botonesNavegacion.jsp"/>
         <!-- /Botones Navgeaciones --->
 
         <!-- Listado Clientes --->
-        <jsp:include page="WEB-INF/pages/cliente/listadoClientes.jsp"/>
+        <jsp:include page="/WEB-INF/pages/cliente/listadoClientes.jsp"/>
         <!-- /Listado Clientes --->
 
         <!-- Optional JavaScript -->
@@ -35,7 +35,7 @@
 
 
         <!-- Footer --->
-        <jsp:include page="WEB-INF/pages/comunes/footer.jsp"/>
+        <jsp:include page="/WEB-INF/pages/comunes/footer.jsp"/>
         <!-- /Footer --->
 
 
